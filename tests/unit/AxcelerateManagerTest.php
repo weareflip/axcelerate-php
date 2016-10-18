@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 class AxcelerateManagerTest extends TestCase
 {
-    public function testContactReturnsContactManager()
+    public function testContactsReturnsContactManager()
     {
         $manager = new AxcelerateManager();
 
