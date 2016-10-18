@@ -1,5 +1,5 @@
 {
-    "name": "weareflip/axcelerate-php",
+    "name": "flip/axcelerate-php",
     "description": "A PHP package to connect and use the aXcelerate API",
     "license": "MIT",
     "authors": [
@@ -11,7 +11,7 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "WeAreFlip\\Axcelerate\\": "src"
+            "Flip\\Axcelerate\\": "src"
         }
     },
 }
