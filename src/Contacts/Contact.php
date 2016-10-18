@@ -2,12 +2,9 @@
 
 namespace Flip\Axcelerate\Contacts;
 
-class Contact
+use Flip\Axcelerate\AxcelerateResource;
+
+class Contact extends AxcelerateResource
 {
     protected $manager;
-
-    public function __construct(ContactManager $manager)
-    {
-        $this->manager = $manager;
-    }
 }

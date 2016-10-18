@@ -2,7 +2,7 @@
 
 namespace Flip\Axcelerate;
 
-use Flip\Axcelerate\Exceptions\ConnectionException;
+use Flip\Axcelerate\Exceptions\AxcelerateException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\RequestException;
@@ -14,9 +14,7 @@ class HttpConnection
 
     public function __construct($base_uri, $wstoken, $apitoken)
     {
-        try {
-            $this->client = new Client(compact('base_uri', 'wstoken', 'apitoken'));
-        } catch (ConnectionException $e) { }
+        $this->client = new Client(compact('base_uri', 'wstoken', 'apitoken'));
     }
 
     public function create($resourceUrl, $data = [])
@@ -45,11 +43,11 @@ class HttpConnection
         try {
             $response = $this->client->request($method, $uri, $options);
         } catch (ClientException $e) {
-            // 4XX
+            throw new AxcelerateException();
         } catch (ServerException $e) {
-            // 5XX
+            throw new AxcelerateException();
         } catch (RequestException $e) {
-            // Network
+            throw new AxcelerateException();
         }
 
         return json_decode($response->getBody()->getContents());
