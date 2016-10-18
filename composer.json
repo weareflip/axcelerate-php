@@ -8,10 +8,12 @@
             "email": "joel@swivid.ink"
         }
     ],
-    "require": {},
+    "require": {
+        "guzzle/guzzle": "^3.9"
+    },
     "autoload": {
         "psr-4": {
             "Flip\\Axcelerate\\": "src"
         }
-    },
+    }
 }
