@@ -1,0 +1,17 @@
+{
+    "name": "weareflip/axcelerate-php",
+    "description": "A PHP package to connect and use the aXcelerate API",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joel Shepherd",
+            "email": "joel@swivid.ink"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "WeAreFlip\\Axcelerate\\": "src"
+        }
+    },
+}
