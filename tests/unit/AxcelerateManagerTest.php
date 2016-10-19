@@ -8,7 +8,7 @@ class AxcelerateManagerTest extends TestCase
 {
     public function testContactsReturnsContactManager()
     {
-        $manager = new AxcelerateManager();
+        $manager = new AxcelerateManager('', '', '');
 
         $this->assertInstanceOf(
             ContactManager::class,

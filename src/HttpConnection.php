@@ -4,17 +4,19 @@ namespace Flip\Axcelerate;
 
 use Flip\Axcelerate\Exceptions\AxcelerateException;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Exception\ServerException;
+use GuzzleHttp\Exception\TransferException;
+use Psr\Http\Message\ResponseInterface;
 
 class HttpConnection
 {
     protected $client;
 
-    public function __construct($base_uri, $wstoken, $apitoken)
+    public function __construct($base_uri, $apitoken,  $wstoken)
     {
-        $this->client = new Client(compact('base_uri', 'wstoken', 'apitoken'));
+        $headers = compact('apitoken', 'wstoken');
+
+        $this->client = new Client(compact('base_uri', 'headers'));
     }
 
     public function create($resourceUrl, $data = [])
@@ -37,19 +39,42 @@ class HttpConnection
         $response = null;
 
         $options = [
-            'json' => $data
+            'form_params' => $data
         ];
 
         try {
             $response = $this->client->request($method, $uri, $options);
-        } catch (ClientException $e) {
-            throw new AxcelerateException();
-        } catch (ServerException $e) {
-            throw new AxcelerateException();
         } catch (RequestException $e) {
-            throw new AxcelerateException();
+            $error = $this->parseError($e);
+            throw new AxcelerateException($error->title, $error->code, $error->detail);
+        } catch (TransferException $e) {
+            throw new AxcelerateException($e->getMessage(), $e->getCode());
         }
 
-        return json_decode($response->getBody()->getContents());
+        return $this->extractResponseJson($response);
+    }
+
+    protected function parseError(RequestException $e)
+    {
+        if ($e->hasResponse() && $response = $this->extractResponseJson($e->getResponse())) {
+            return (object) [
+                'title' => $response->messages,
+                'code' => $response->code,
+                'detail' => $response->details
+            ];
+        }
+
+        return (object) [
+            'title' => $e->getMessage(),
+            'code' => $e->getCode(),
+            'detail' => ''
+        ];
+    }
+
+    public function extractResponseJson(ResponseInterface $response)
+    {
+        $body = json_decode($response->getBody()->getContents(), true);
+
+        return $body ? (object) array_change_key_case($body) : false;
     }
 }

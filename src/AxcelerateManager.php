@@ -10,9 +10,9 @@ class AxcelerateManager
 
     protected $contacts;
 
-    public function __construct($baseUri, $wsToken, $apiToken)
+    public function __construct($baseUri, $apiToken, $wsToken)
     {
-        $this->connection = new HttpConnection($baseUri, $wsToken, $apiToken);
+        $this->connection = new HttpConnection($baseUri, $apiToken, $wsToken);
         $this->contacts = new ContactManager($this->connection);
     }
 
