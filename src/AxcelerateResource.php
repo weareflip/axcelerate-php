@@ -12,7 +12,7 @@ abstract class AxcelerateResource
 
     protected $attributes;
 
-    public function __construct($attributes, $manager)
+    public function __construct($attributes, ManagerContract $manager)
     {
         $this->manager = $manager;
         $this->attributes = $attributes;

@@ -27,8 +27,18 @@ class Contact extends AxcelerateResource
      * @param Instance $instance The instance the enrolment is for
      * @return Enrolment
      */
-    public function enrolment(Instance $instance)
+    public function enrolmentForInstance(Instance $instance)
     {
-        return new Enrolment($this->manager, [], $this, $instance);
+        return new Enrolment($this->manager, $this, $instance);
+    }
+
+    /**
+     * Returns all enrolments for user
+     *
+     * @return array<Enrolment>
+     */
+    public function enrolments()
+    {
+        return [];
     }
 }
