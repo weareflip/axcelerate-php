@@ -4,6 +4,7 @@ namespace Flip\Axcelerate\Contacts;
 
 use Flip\Axcelerate\AxcelerateResource;
 use Flip\Axcelerate\Courses\Instance;
+use Flip\Axcelerate\ManagerContract;
 
 class Enrolment extends AxcelerateResource
 {
@@ -17,7 +18,7 @@ class Enrolment extends AxcelerateResource
     /** @var Instance $instance */
     protected $instance;
 
-    public function __construct(ContactManager $manager, Contact $contact, Instance $instance)
+    public function __construct(ManagerContract $manager, Contact $contact, Instance $instance)
     {
         $this->contact = $contact;
         $this->instance = $instance;
@@ -44,6 +45,13 @@ class Enrolment extends AxcelerateResource
         return true;
     }
 
+    /**
+     * Update the static of a unit of competency
+     *
+     * @param string $competencyCode
+     * @param int $status The status code (static::COMPLETE, static::INCOMPLETE, static::CANCELLED are valid options)
+     * @return bool
+     */
     public function updateCompetencyStatus($competencyCode, $status)
     {
         $params = [
@@ -53,5 +61,7 @@ class Enrolment extends AxcelerateResource
         ];
 
         $this->manager->getConnection()->update('course/enrolment', $params);
+
+        return true;
     }
 }

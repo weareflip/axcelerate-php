@@ -26,4 +26,19 @@ class AxcelerateTest extends TestCase
             $axcelerate->courses()
         );
     }
+
+    public function testSingletonsAreReturned()
+    {
+        $axcelerate = new Axcelerate('', '', '');
+
+        $this->assertEquals(
+            spl_object_hash($axcelerate->contacts()),
+            spl_object_hash($axcelerate->contacts())
+        );
+
+        $this->assertEquals(
+            spl_object_hash($axcelerate->courses()),
+            spl_object_hash($axcelerate->courses())
+        );
+    }
 }

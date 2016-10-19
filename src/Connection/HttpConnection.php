@@ -1,8 +1,8 @@
 <?php
 
-namespace Flip\Axcelerate;
+namespace Flip\Axcelerate\Connection;
 
-use Flip\Axcelerate\ConnectionContract;
+use Flip\Axcelerate\Connection\ConnectionContract;
 use Flip\Axcelerate\Exceptions\AxcelerateException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
@@ -11,6 +11,7 @@ use Psr\Http\Message\ResponseInterface;
 
 class HttpConnection implements ConnectionContract
 {
+    /** @var Client $client */
     protected $client;
 
     public function __construct($base_uri, $apitoken,  $wstoken)
@@ -35,14 +36,14 @@ class HttpConnection implements ConnectionContract
         return $this->request($path, 'PUT', $data);
     }
 
-    protected function request($uri, $method, $data = [])
+    protected function request($path, $method, $data = [])
     {
         $options = [
             'form_params' => $data
         ];
 
         try {
-            $response = $this->client->request($method, $uri, $options);
+            $response = $this->client->request($method, $path, $options);
         } catch (RequestException $e) {
             $error = $this->parseError($e);
             throw new AxcelerateException($error->title, $error->code, $error->detail);

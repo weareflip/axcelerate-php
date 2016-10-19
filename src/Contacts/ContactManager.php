@@ -2,7 +2,6 @@
 
 namespace Flip\Axcelerate\Contacts;
 
-use Flip\Axcelerate\ConnectionContract;
 use Flip\Axcelerate\Manager;
 use Flip\Axcelerate\ManagerContract;
 

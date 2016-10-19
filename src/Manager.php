@@ -2,7 +2,7 @@
 
 namespace Flip\Axcelerate;
 
-use Flip\Axcelerate\ConnectionContract;
+use Flip\Axcelerate\Connection\ConnectionContract;
 
 abstract class Manager
 {
