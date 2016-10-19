@@ -36,8 +36,6 @@ class HttpConnection
 
     protected function request($uri, $method, $data = [])
     {
-        $response = null;
-
         $options = [
             'form_params' => $data
         ];
