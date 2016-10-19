@@ -36,4 +36,11 @@ class ContactManager
 
         return $contact ? $this->find($contact->CONTACTID) : null;
     }
+
+    public function update($id, $attributes)
+    {
+        $contact = $this->connection->update('contact/' . $id, $attributes);
+
+        return $contact ? $this->find($contact->CONTACTID) : null;
+    }
 }
