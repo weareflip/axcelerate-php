@@ -17,7 +17,7 @@ class ContactManager
     {
         $contact = $this->connection->get('contact/' . $id);
 
-        return $contact ? new Contact($this, $contact) : null;
+        return $contact ? new Contact($contact, $this) : null;
     }
 
     public function create($attributes)
@@ -34,7 +34,7 @@ class ContactManager
 
         $contact = $this->connection->create('contact', $attributes);
 
-        return $contact ? $this->find($contact->CONTACTID) : null;
+        return $contact ? $this->find($contact->CONTACTID) : null; // @TODO Didn't we change this to lower case?
     }
 
     public function update($id, $attributes)

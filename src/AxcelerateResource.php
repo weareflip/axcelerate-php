@@ -4,14 +4,23 @@ namespace Flip\Axcelerate;
 
 abstract class AxcelerateResource
 {
+    public $id;
+
+    public $idAttribute;
+
     protected $manager;
 
     protected $attributes;
 
-    public function __construct($manager, $attributes)
+    public function __construct($attributes, $manager)
     {
         $this->manager = $manager;
         $this->attributes = $attributes;
+
+        // Set ID if exists
+        if ($this->idAttribute && array_key_exists($this->idAttribute, $attributes)) {
+            $this->id = $attributes[$this->idAttribute];
+        }
     }
 
     public function toArray()
