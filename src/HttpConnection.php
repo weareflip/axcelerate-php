@@ -2,13 +2,14 @@
 
 namespace Flip\Axcelerate;
 
+use Flip\Axcelerate\ConnectionContract;
 use Flip\Axcelerate\Exceptions\AxcelerateException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\TransferException;
 use Psr\Http\Message\ResponseInterface;
 
-class HttpConnection
+class HttpConnection implements ConnectionContract
 {
     protected $client;
 
@@ -19,19 +20,19 @@ class HttpConnection
         $this->client = new Client(compact('base_uri', 'headers'));
     }
 
-    public function create($resourceUrl, $data = [])
+    public function create($path, $data = [])
     {
-        return $this->request($resourceUrl, 'POST', $data);
+        return $this->request($path, 'POST', $data);
     }
 
-    public function get($resourceUrl)
+    public function get($path)
     {
-        return $this->request($resourceUrl, 'GET');
+        return $this->request($path, 'GET');
     }
 
-    public function update($resourceUrl, $data)
+    public function update($path, $data)
     {
-        return $this->request($resourceUrl, 'PUT', $data);
+        return $this->request($path, 'PUT', $data);
     }
 
     protected function request($uri, $method, $data = [])

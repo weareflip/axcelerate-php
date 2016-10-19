@@ -5,7 +5,7 @@ namespace Flip\Axcelerate;
 use Flip\Axcelerate\Contacts\ContactManager;
 use Flip\Axcelerate\Courses\CourseManager;
 
-class AxcelerateManager
+class Axcelerate
 {
     protected $connection;
 

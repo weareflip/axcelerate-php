@@ -2,20 +2,15 @@
 
 namespace Flip\Axcelerate\Contacts;
 
-use Flip\Axcelerate\HttpConnection;
+use Flip\Axcelerate\ConnectionContract;
+use Flip\Axcelerate\Manager;
+use Flip\Axcelerate\ManagerContract;
 
-class ContactManager
+class ContactManager extends Manager implements ManagerContract
 {
-    protected $connection;
-
-    public function __construct(HttpConnection $connection)
-    {
-        $this->connection = $connection;
-    }
-
     public function find($id)
     {
-        $contact = $this->connection->get('contact/' . $id);
+        $contact = $this->getConnection()->get('contact/' . $id);
 
         return $contact ? new Contact($contact, $this) : null;
     }
@@ -32,14 +27,14 @@ class ContactManager
             throw new \InvalidArgumentException('Required fields not present: ' . implode(', ', $diff));
         }
 
-        $contact = $this->connection->create('contact', $attributes);
+        $contact = $this->getConnection()->create('contact', $attributes);
 
         return $contact ? $this->find($contact->CONTACTID) : null; // @TODO Didn't we change this to lower case?
     }
 
     public function update($id, $attributes)
     {
-        $contact = $this->connection->update('contact/' . $id, $attributes);
+        $contact = $this->getConnection()->update('contact/' . $id, $attributes);
 
         return $contact ? $this->find($contact->CONTACTID) : null;
     }
