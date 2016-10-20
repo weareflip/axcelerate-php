@@ -7,6 +7,9 @@ use Flip\Axcelerate\Courses\Instance;
 
 class Contact extends AxcelerateResource
 {
+    /** @var string $idAttribute Automatically assigned ID field */
+    public $idAttribute = 'contactid';
+
     /** @var ContactManager $manager */
     protected $manager;
 
