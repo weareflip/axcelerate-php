@@ -40,8 +40,7 @@ class CourseManager extends Manager implements ManagerContract
             'startDate_max' => date('Y-m-d', time() + 3153600000), // 100 years from now
             'finishDate_min' => date('Y-m-d', time() - 3153600000), // 100 years ago
             'finishDate_max' => date('Y-m-d', time() + 3153600000), // 100 years from now
-            'enrolmentOpen' => true,
-            'public' => true
+            'everything' => true
         ];
 
         $instances = [];
