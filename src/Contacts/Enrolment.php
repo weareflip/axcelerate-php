@@ -11,6 +11,7 @@ class Enrolment extends Resource
     const COMPLETE = 20;
     const INCOMPLETE = 30;
     const CANCELLED = 40;
+    const CREDIT_TRANSFER = 60;
 
     /** @var Contact $contact */
     protected $contact;

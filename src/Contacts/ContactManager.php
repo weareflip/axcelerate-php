@@ -9,7 +9,7 @@ class ContactManager extends Manager implements ManagerContract
 {
     public function find($id)
     {
-        $contact = $this->getConnection()->get('contact/' . $id);
+        $contact = $this->getConnection()->get('contact/' . $id, []);
 
         return $contact ? new Contact($contact, $this) : null;
     }

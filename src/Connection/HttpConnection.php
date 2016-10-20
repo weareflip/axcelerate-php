@@ -28,9 +28,16 @@ class HttpConnection implements ConnectionContract
         ]);
     }
 
-    public function get($path, $params = [])
+    public function get($path, $params)
     {
-        return $this->request($path, 'GET', null, [
+        return $this->request($path, 'GET', [
+            'query' => $params
+        ]);
+    }
+
+    public function post($path, $params)
+    {
+        return $this->request($path, 'POST', [
             'query' => $params
         ]);
     }
@@ -46,6 +53,9 @@ class HttpConnection implements ConnectionContract
     {
         try {
             $response = $this->client->request($method, $path, $options);
+            if ($method == 'POST') {
+                var_dump($response->getBody()->getContents());
+            }
         } catch (RequestException $e) {
             $error = $this->parseError($e);
             throw new AxcelerateException($error->title, $error->code, $error->detail);
@@ -77,6 +87,6 @@ class HttpConnection implements ConnectionContract
     {
         $body = json_decode($response->getBody()->getContents(), true);
 
-        return $body ? array_change_key_case($body) : false;
+        return $body ? array_filter(array_change_key_case($body)) : false;
     }
 }

@@ -8,5 +8,8 @@ interface ConnectionContract
 
     public function get($path, $params);
 
+    public function post($path, $params);
+
     public function update($path, $attributes);
+
 }

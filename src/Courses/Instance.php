@@ -6,5 +6,5 @@ use Flip\Axcelerate\Resource;
 
 class Instance extends Resource
 {
-    public $idAttribute = 'instanceid';
+    public $idAttribute = 'instanceID';
 }

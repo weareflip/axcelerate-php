@@ -23,7 +23,7 @@ class CourseManager extends Manager implements ManagerContract
             throw new AxcelerateException('Search attributes were not specific enough to find a single instance.');
         }
 
-        return $instances ? $instances[0] : null;
+        return $instances ? new $instances[0] : null;
     }
 
     /**
@@ -36,7 +36,11 @@ class CourseManager extends Manager implements ManagerContract
     {
         $instances = [];
 
-        $response = $this->getConnection()->get('course/instances', $attributes);
+        $response = $this->getConnection()->post('course/instance/search', $attributes);
+
+        if (!$response) {
+            return [];
+        }
 
         foreach ($response as $instance) {
             $instances[] = new Instance($instance, $this);

@@ -35,6 +35,11 @@ class MockConnection implements ConnectionContract
         return $this->response;
     }
 
+    public function post($path, $params = [])
+    {
+        return $this->response;
+    }
+
     public function update($path, $attributes)
     {
         return $this->response;
