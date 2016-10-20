@@ -23,7 +23,7 @@ class Enrolment extends AxcelerateResource
         $this->contact = $contact;
         $this->instance = $instance;
 
-        parent::__construct([], $manager); // This ins't an actual model and doesn't have any attributes of it's own
+        parent::__construct([], $manager); // This ins't an actual resource and doesn't have it's own attributes
     }
 
     /**
@@ -40,9 +40,7 @@ class Enrolment extends AxcelerateResource
             'type' => 'p'
         ];
 
-        $this->manager->getConnection()->update('course/enrolment', array_merge($params, $attributes));
-
-        return true;
+        return (bool) $this->manager->getConnection()->update('course/enrolment', array_merge($attributes, $params));
     }
 
     /**
@@ -56,12 +54,12 @@ class Enrolment extends AxcelerateResource
     {
         $params = [
             'contactID' => $this->contact->id,
+            'programInstanceID' => $this->instance->id,
             'subjectCode' => $competencyCode,
-            'status' => $status
+            'competent' => $status,
+            'type' => 's'
         ];
 
-        $this->manager->getConnection()->update('course/enrolment', $params);
-
-        return true;
+        return (bool) $this->manager->getConnection()->update('course/enrolment', $params);
     }
 }
