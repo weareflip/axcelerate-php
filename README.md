@@ -1,6 +1,9 @@
 # flip/axcelerate-php
 
-A PHP package to connect and use the aXcelerate API.
+A PHP package to interact with the aXcelerate API.
+
+http://flip.ninja/
+https://www.axcelerate.com.au/
 
 ## Usage
 
