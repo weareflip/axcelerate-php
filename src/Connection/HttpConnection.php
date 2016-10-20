@@ -77,6 +77,6 @@ class HttpConnection implements ConnectionContract
     {
         $body = json_decode($response->getBody()->getContents(), true);
 
-        return $body ? (object) array_change_key_case($body) : false;
+        return $body ? array_change_key_case($body) : false;
     }
 }
