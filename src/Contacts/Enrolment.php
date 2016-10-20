@@ -2,11 +2,11 @@
 
 namespace Flip\Axcelerate\Contacts;
 
-use Flip\Axcelerate\AxcelerateResource;
-use Flip\Axcelerate\Courses\Instance;
 use Flip\Axcelerate\ManagerContract;
+use Flip\Axcelerate\Resource;
+use Flip\Axcelerate\Courses\Instance;
 
-class Enrolment extends AxcelerateResource
+class Enrolment extends Resource
 {
     const COMPLETE = 20;
     const INCOMPLETE = 30;

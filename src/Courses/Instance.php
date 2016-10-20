@@ -2,9 +2,9 @@
 
 namespace Flip\Axcelerate\Courses;
 
-use Flip\Axcelerate\AxcelerateResource;
+use Flip\Axcelerate\Resource;
 
-class Instance extends AxcelerateResource
+class Instance extends Resource
 {
-
+    public $idAttribute = 'instanceid';
 }

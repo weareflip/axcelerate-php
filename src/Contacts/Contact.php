@@ -2,16 +2,13 @@
 
 namespace Flip\Axcelerate\Contacts;
 
-use Flip\Axcelerate\AxcelerateResource;
+use Flip\Axcelerate\Resource;
 use Flip\Axcelerate\Courses\Instance;
 
-class Contact extends AxcelerateResource
+class Contact extends Resource
 {
     /** @var string $idAttribute Automatically assigned ID field */
     public $idAttribute = 'contactid';
-
-    /** @var ContactManager $manager */
-    protected $manager;
 
     /**
      * Update Contact's details

@@ -25,17 +25,17 @@ class MockConnection implements ConnectionContract
         $this->response = $response;
     }
 
-    public function create($path, $data = [])
+    public function create($path, $attributes)
     {
         return $this->response;
     }
 
-    public function get($path)
+    public function get($path, $params = [])
     {
         return $this->response;
     }
 
-    public function update($path, $data)
+    public function update($path, $attributes)
     {
         return $this->response;
     }
