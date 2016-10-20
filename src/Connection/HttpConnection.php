@@ -53,9 +53,6 @@ class HttpConnection implements ConnectionContract
     {
         try {
             $response = $this->client->request($method, $path, $options);
-            if ($method == 'POST') {
-                var_dump($response->getBody()->getContents());
-            }
         } catch (RequestException $e) {
             $error = $this->parseError($e);
             throw new AxcelerateException($error->title, $error->code, $error->detail);

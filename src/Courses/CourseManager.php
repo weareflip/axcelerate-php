@@ -23,7 +23,7 @@ class CourseManager extends Manager implements ManagerContract
             throw new AxcelerateException('Search attributes were not specific enough to find a single instance.');
         }
 
-        return $instances ? new $instances[0] : null;
+        return $instances ? $instances[0] : null;
     }
 
     /**
@@ -34,16 +34,22 @@ class CourseManager extends Manager implements ManagerContract
      */
     public function searchForInstances($attributes)
     {
+        // Default search parameters
+        $defaults = [
+            'startDate_min' => date('Y-m-d', time() - 3153600000), // 100 years ago
+            'startDate_max' => date('Y-m-d', time() + 3153600000), // 100 years from now
+            'finishDate_min' => date('Y-m-d', time() - 3153600000), // 100 years ago
+            'finishDate_max' => date('Y-m-d', time() + 3153600000), // 100 years from now
+            'enrolmentOpen' => true,
+            'public' => true
+        ];
+
         $instances = [];
 
-        $response = $this->getConnection()->post('course/instance/search', $attributes);
-
-        if (!$response) {
-            return [];
-        }
-
-        foreach ($response as $instance) {
-            $instances[] = new Instance($instance, $this);
+        if ($response = $this->getConnection()->post('course/instance/search', array_merge($defaults, $attributes))) {
+            foreach ($response as $instance) {
+                $instances[] = new Instance($instance, $this);
+            }
         }
 
         return $instances;
