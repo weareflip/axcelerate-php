@@ -9,9 +9,9 @@ class MockConnection implements ConnectionContract
     /** @var mixed $response */
     protected $response;
 
-    public function __construct($base_uri, $apitoken,  $wstoken)
+    public function __construct()
     {
-        // @TODO The constructor should be part of the interface
+        // @TODO The constructor should be part of the interface?
     }
 
     /**

@@ -21,27 +21,29 @@ class HttpConnection implements ConnectionContract
         $this->client = new Client(compact('base_uri', 'headers'));
     }
 
-    public function create($path, $data = [])
+    public function create($path, $attributes)
     {
-        return $this->request($path, 'POST', $data);
+        return $this->request($path, 'POST', [
+            'form_params' => $attributes
+        ]);
     }
 
-    public function get($path)
+    public function get($path, $params = [])
     {
-        return $this->request($path, 'GET');
+        return $this->request($path, 'GET', null, [
+            'query' => $params
+        ]);
     }
 
-    public function update($path, $data)
+    public function update($path, $attributes)
     {
-        return $this->request($path, 'PUT', $data);
+        return $this->request($path, 'PUT', [
+            'form_params' => $attributes
+        ]);
     }
 
-    protected function request($path, $method, $data = [])
+    protected function request($path, $method, $options = [])
     {
-        $options = [
-            'form_params' => $data
-        ];
-
         try {
             $response = $this->client->request($method, $path, $options);
         } catch (RequestException $e) {
