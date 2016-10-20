@@ -16,7 +16,10 @@ $axcelerate = new Axcelerate($apiToken, $wsToken, Axcelerate::STAGING_BASE);
 $contact = $axcelerate->contacts()->find($user->id);
 
 // Find a class/instance
-$instance = $axcelerate->courses()->searchAndGetInstance("%$className%", $teacher->id);
+$instance = $axcelerate->courses()->findInstance([
+    "name" => "An instance name",
+    "trainerID" => $teacher->id
+]);
 
 // Update a contact's competency status for a class/instance to complete
 $contact->enrolmentForInstance($instance)->updateComptentecyStatus($competencyCode, Enrolment::COMPLETE);
