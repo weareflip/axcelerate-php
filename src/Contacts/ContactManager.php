@@ -4,14 +4,15 @@ namespace FlipNinja\Axcelerate\Contacts;
 
 use FlipNinja\Axcelerate\Manager;
 use FlipNinja\Axcelerate\ManagerContract;
+use FlipNinja\Axcelerate\Contacts\Contact;
 
 class ContactManager extends Manager implements ManagerContract
 {
     public function find($id)
     {
-        $contact = $this->getConnection()->get('contact/' . $id, []);
+        $response = $this->getConnection()->get('contact/' . $id, []);
 
-        return $contact ? new Contact($contact, $this) : null;
+        return $response ? new Contact($response, $this) : null;
     }
 
     public function create($attributes)
@@ -26,15 +27,8 @@ class ContactManager extends Manager implements ManagerContract
             throw new \InvalidArgumentException('Required fields not present: ' . implode(', ', $diff));
         }
 
-        $contact = $this->getConnection()->create('contact', $attributes);
+        $response = $this->getConnection()->create('contact', $attributes);
 
-        return $contact ? $this->find($contact->CONTACTID) : null; // @TODO Didn't we change this to lower case?
-    }
-
-    public function update($id, $attributes)
-    {
-        $contact = $this->getConnection()->update('contact/' . $id, $attributes);
-
-        return $contact ? $this->find($contact->CONTACTID) : null;
+        return $response ? intval($response['contactid']) : null;
     }
 }
