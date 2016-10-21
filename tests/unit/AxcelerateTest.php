@@ -1,8 +1,8 @@
 <?php
 
-use Flip\Axcelerate\Axcelerate;
-use Flip\Axcelerate\Contacts\ContactManager;
-use Flip\Axcelerate\Courses\CourseManager;
+use FlipNinja\Axcelerate\Axcelerate;
+use FlipNinja\Axcelerate\Contacts\ContactManager;
+use FlipNinja\Axcelerate\Courses\CourseManager;
 use PHPUnit\Framework\TestCase;
 
 class AxcelerateTest extends TestCase

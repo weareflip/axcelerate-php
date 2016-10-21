@@ -1,6 +1,6 @@
 <?php
 
-namespace Flip\Axcelerate\Connection;
+namespace FlipNinja\Axcelerate\Connection;
 
 interface ConnectionContract
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Flip\Axcelerate\Connection;
+namespace FlipNinja\Axcelerate\Connection;
 
-use Flip\Axcelerate\Connection\ConnectionContract;
+use FlipNinja\Axcelerate\Connection\ConnectionContract;
 
 class MockConnection implements ConnectionContract
 {

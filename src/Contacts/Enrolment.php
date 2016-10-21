@@ -1,10 +1,10 @@
 <?php
 
-namespace Flip\Axcelerate\Contacts;
+namespace FlipNinja\Axcelerate\Contacts;
 
-use Flip\Axcelerate\ManagerContract;
-use Flip\Axcelerate\Resource;
-use Flip\Axcelerate\Courses\Instance;
+use FlipNinja\Axcelerate\ManagerContract;
+use FlipNinja\Axcelerate\Resource;
+use FlipNinja\Axcelerate\Courses\Instance;
 
 class Enrolment extends Resource
 {

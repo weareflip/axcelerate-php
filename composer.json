@@ -1,5 +1,5 @@
 {
-    "name": "flip/axcelerate-php",
+    "name": "flipninja/axcelerate-php",
     "description": "A PHP package to interact with the aXcelerate API",
     "license": "MIT",
     "authors": [
@@ -21,7 +21,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Flip\\Axcelerate\\": "src"
+            "FlipNinja\\Axcelerate\\": "src"
         }
     }
 }

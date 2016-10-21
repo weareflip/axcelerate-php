@@ -1,8 +1,8 @@
 <?php
 
-namespace Flip\Axcelerate\Courses;
+namespace FlipNinja\Axcelerate\Courses;
 
-use Flip\Axcelerate\Resource;
+use FlipNinja\Axcelerate\Resource;
 
 class Instance extends Resource
 {

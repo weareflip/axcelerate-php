@@ -1,11 +1,11 @@
 <?php
 
-namespace Flip\Axcelerate;
+namespace FlipNinja\Axcelerate;
 
-use Flip\Axcelerate\Connection\ConnectionContract;
-use Flip\Axcelerate\Connection\HttpConnection;
-use Flip\Axcelerate\Contacts\ContactManager;
-use Flip\Axcelerate\Courses\CourseManager;
+use FlipNinja\Axcelerate\Connection\ConnectionContract;
+use FlipNinja\Axcelerate\Connection\HttpConnection;
+use FlipNinja\Axcelerate\Contacts\ContactManager;
+use FlipNinja\Axcelerate\Courses\CourseManager;
 
 class Axcelerate
 {

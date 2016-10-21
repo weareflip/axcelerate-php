@@ -1,6 +1,6 @@
 <?php
 
-namespace Flip\Axcelerate\Exceptions;
+namespace FlipNinja\Axcelerate\Exceptions;
 
 class AxcelerateException extends \Exception
 {

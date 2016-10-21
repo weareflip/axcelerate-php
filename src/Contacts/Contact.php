@@ -1,9 +1,9 @@
 <?php
 
-namespace Flip\Axcelerate\Contacts;
+namespace FlipNinja\Axcelerate\Contacts;
 
-use Flip\Axcelerate\Resource;
-use Flip\Axcelerate\Courses\Instance;
+use FlipNinja\Axcelerate\Resource;
+use FlipNinja\Axcelerate\Courses\Instance;
 
 class Contact extends Resource
 {

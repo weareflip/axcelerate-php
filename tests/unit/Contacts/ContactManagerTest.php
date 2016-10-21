@@ -1,8 +1,8 @@
 <?php
 
-use Flip\Axcelerate\Connection\MockConnection;
-use Flip\Axcelerate\Contacts\Contact;
-use Flip\Axcelerate\Contacts\ContactManager;
+use FlipNinja\Axcelerate\Connection\MockConnection;
+use FlipNinja\Axcelerate\Contacts\Contact;
+use FlipNinja\Axcelerate\Contacts\ContactManager;
 use PHPUnit\Framework\TestCase;
 
 class ContactManagerTest extends TestCase

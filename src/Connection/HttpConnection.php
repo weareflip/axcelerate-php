@@ -1,9 +1,9 @@
 <?php
 
-namespace Flip\Axcelerate\Connection;
+namespace FlipNinja\Axcelerate\Connection;
 
-use Flip\Axcelerate\Connection\ConnectionContract;
-use Flip\Axcelerate\Exceptions\AxcelerateException;
+use FlipNinja\Axcelerate\Connection\ConnectionContract;
+use FlipNinja\Axcelerate\Exceptions\AxcelerateException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\TransferException;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Flip\Axcelerate;
+namespace FlipNinja\Axcelerate;
 
 abstract class Resource
 {

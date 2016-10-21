@@ -1,11 +1,11 @@
 <?php
 
-namespace Flip\Axcelerate\Courses;
+namespace FlipNinja\Axcelerate\Courses;
 
-use Flip\Axcelerate\Manager;
-use Flip\Axcelerate\ManagerContract;
-use Flip\Axcelerate\Courses\Instance;
-use Flip\Axcelerate\Exceptions\AxcelerateException;
+use FlipNinja\Axcelerate\Manager;
+use FlipNinja\Axcelerate\ManagerContract;
+use FlipNinja\Axcelerate\Courses\Instance;
+use FlipNinja\Axcelerate\Exceptions\AxcelerateException;
 
 class CourseManager extends Manager implements ManagerContract
 {
@@ -40,7 +40,7 @@ class CourseManager extends Manager implements ManagerContract
             'startDate_max' => date('Y-m-d', time() + 3153600000), // 100 years from now
             'finishDate_min' => date('Y-m-d', time() - 3153600000), // 100 years ago
             'finishDate_max' => date('Y-m-d', time() + 3153600000), // 100 years from now
-            'everything' => true
+            'everything' => true // A lovely parameter that overwrites the defaults
         ];
 
         $instances = [];

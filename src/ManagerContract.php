@@ -1,8 +1,8 @@
 <?php
 
-namespace Flip\Axcelerate;
+namespace FlipNinja\Axcelerate;
 
-use Flip\Axcelerate\Connection\ConnectionContract;
+use FlipNinja\Axcelerate\Connection\ConnectionContract;
 
 interface ManagerContract
 {

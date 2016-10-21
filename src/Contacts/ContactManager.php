@@ -1,9 +1,9 @@
 <?php
 
-namespace Flip\Axcelerate\Contacts;
+namespace FlipNinja\Axcelerate\Contacts;
 
-use Flip\Axcelerate\Manager;
-use Flip\Axcelerate\ManagerContract;
+use FlipNinja\Axcelerate\Manager;
+use FlipNinja\Axcelerate\ManagerContract;
 
 class ContactManager extends Manager implements ManagerContract
 {
