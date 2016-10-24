@@ -13,11 +13,18 @@ class Contact extends Resource
      * Update Contact's details
      *
      * @param array $attributes Attributes to update
-     * @return mixed
+     * @return bool
      */
     public function update($attributes)
     {
-        return $this->manager->update($this->id, $attributes);
+        $response = $this->manager->getConnection()->update('contact/' . $this->id, $attributes);
+
+        if ($response) {
+            $this->attributes = $response;
+            return true;
+        }
+
+        return false;
     }
 
     /**

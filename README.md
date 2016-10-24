@@ -1,4 +1,4 @@
-# flip/axcelerate-php
+# flipninja/axcelerate-php
 
 A PHP package to interact with the aXcelerate API.
 
