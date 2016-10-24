@@ -17,7 +17,6 @@ class HttpConnection implements ConnectionContract
     public function __construct($base_uri, $apitoken,  $wstoken)
     {
         $headers = compact('apitoken', 'wstoken');
-
         $this->client = new Client(compact('base_uri', 'headers'));
     }
 
@@ -55,7 +54,12 @@ class HttpConnection implements ConnectionContract
             $response = $this->client->request($method, $path, $options);
         } catch (RequestException $e) {
             $error = $this->parseError($e);
-            throw new AxcelerateException($error->title, $error->code, $error->detail);
+
+            throw new AxcelerateException(
+                $error->title,
+                is_int($error->code) ? $error->code : 500,
+                $error->detail
+            );
         } catch (TransferException $e) {
             throw new AxcelerateException($e->getMessage(), $e->getCode());
         }
@@ -67,9 +71,9 @@ class HttpConnection implements ConnectionContract
     {
         if ($e->hasResponse() && $response = $this->extractResponseJson($e->getResponse())) {
             return (object) [
-                'title' => $response->messages,
-                'code' => $response->code,
-                'detail' => $response->details
+                'title' => $response['messages'],
+                'code' => $response['code'],
+                'detail' => $response['details']
             ];
         }
 
