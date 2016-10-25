@@ -67,9 +67,9 @@ class HttpConnection implements ConnectionContract
     {
         if ($e->hasResponse() && $response = $this->decodeResponse($e->getResponse())) {
             return (object) [
-                'title' => array_get($response, 'MESSAGES'),
-                'code' => intval(array_get($response, 'CODE', 500)),
-                'detail' => array_get($response, 'DETAILS')
+                'title' => array_key_exists($response, 'MESSAGES') ? $response['MESSAGES'] : '',
+                'code' => array_key_exists($response, 'CODE') ? intval($response['CODE']) : 500,
+                'detail' => array_key_exists($response, 'DETAILS') ? $response['DETAILS'] : ''
             ];
         }
 
