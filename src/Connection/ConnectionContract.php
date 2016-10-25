@@ -11,5 +11,4 @@ interface ConnectionContract
     public function post($path, $params);
 
     public function update($path, $attributes);
-
 }

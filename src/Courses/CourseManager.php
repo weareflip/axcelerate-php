@@ -4,7 +4,6 @@ namespace FlipNinja\Axcelerate\Courses;
 
 use FlipNinja\Axcelerate\Manager;
 use FlipNinja\Axcelerate\ManagerContract;
-use FlipNinja\Axcelerate\Courses\Instance;
 use FlipNinja\Axcelerate\Exceptions\AxcelerateException;
 
 class CourseManager extends Manager implements ManagerContract
@@ -12,12 +11,13 @@ class CourseManager extends Manager implements ManagerContract
     /**
      * Find an instance with attributes
      *
+     * @throws AxcelerateException if multiple instances are found
      * @param array $attributes Attributes to match with
      * @return Instance|null
      */
     public function findInstance($attributes)
     {
-        $instances = $this->searchForInstances($attributes);
+        $instances = $this->searchInstances($attributes);
 
         if (count($instances) > 1) {
             throw new AxcelerateException('Search attributes were not specific enough to find a single instance.');
@@ -32,7 +32,7 @@ class CourseManager extends Manager implements ManagerContract
      * @param array $attributes Attributes to match with
      * @return Instance[]
      */
-    public function searchForInstances($attributes)
+    public function searchInstances($attributes)
     {
         // Default search parameters
         $defaults = [

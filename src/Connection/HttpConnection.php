@@ -55,25 +55,21 @@ class HttpConnection implements ConnectionContract
         } catch (RequestException $e) {
             $error = $this->parseError($e);
 
-            throw new AxcelerateException(
-                $error->title,
-                is_int($error->code) ? $error->code : 500,
-                $error->detail
-            );
+            throw new AxcelerateException($error->title, $error->code, $error->detail);
         } catch (TransferException $e) {
             throw new AxcelerateException($e->getMessage(), $e->getCode());
         }
 
-        return $this->extractResponseJson($response);
+        return $this->decodeResponse($response);
     }
 
     protected function parseError(RequestException $e)
     {
-        if ($e->hasResponse() && $response = $this->extractResponseJson($e->getResponse())) {
+        if ($e->hasResponse() && $response = $this->decodeResponse($e->getResponse())) {
             return (object) [
-                'title' => $response['messages'],
-                'code' => $response['code'],
-                'detail' => $response['details']
+                'title' => array_get($response, 'MESSAGES'),
+                'code' => intval(array_get($response, 'CODE', 500)),
+                'detail' => array_get($response, 'DETAILS')
             ];
         }
 
@@ -84,10 +80,13 @@ class HttpConnection implements ConnectionContract
         ];
     }
 
-    public function extractResponseJson(ResponseInterface $response)
+    /**
+     * JSON Decodes Response body
+     *
+     * @return array
+     */
+    protected function decodeResponse(ResponseInterface $response)
     {
-        $body = json_decode($response->getBody()->getContents(), true);
-
-        return $body ? array_filter(array_change_key_case($body)) : false;
+        return json_decode($response->getBody()->getContents(), true);
     }
 }

@@ -2,10 +2,8 @@
 
 namespace FlipNinja\Axcelerate\Contacts;
 
-use FlipNinja\Axcelerate\Exceptions\AxcelerateException;
 use FlipNinja\Axcelerate\Manager;
 use FlipNinja\Axcelerate\ManagerContract;
-use FlipNinja\Axcelerate\Contacts\Contact;
 
 class ContactManager extends Manager implements ManagerContract
 {
@@ -46,16 +44,6 @@ class ContactManager extends Manager implements ManagerContract
 
     public function create($attributes)
     {
-        $required = [
-            'givenName',
-            'surname',
-            'emailAddress'
-        ];
-
-        if ($diff = array_diff($required, array_keys($attributes))) {
-            throw new \InvalidArgumentException('Required fields not present: ' . implode(', ', $diff));
-        }
-
         $response = $this->getConnection()->create('contact', $attributes);
 
         return $response ? intval($response['contactid']) : null;

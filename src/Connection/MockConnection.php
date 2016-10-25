@@ -2,8 +2,6 @@
 
 namespace FlipNinja\Axcelerate\Connection;
 
-use FlipNinja\Axcelerate\Connection\ConnectionContract;
-
 class MockConnection implements ConnectionContract
 {
     /** @var mixed $response */

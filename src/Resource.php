@@ -23,12 +23,28 @@ abstract class Resource
     public function __construct($attributes, ManagerContract $manager)
     {
         $this->manager = $manager;
-        $this->attributes = $attributes;
+        $this->attributes = $this->deAxcelerateAttributes($attributes);
 
         // Set ID if exists
-        if ($this->idAttribute && array_key_exists($this->idAttribute, $attributes)) {
-            $this->id = $attributes[$this->idAttribute];
+        if ($this->idAttribute && array_key_exists($this->idAttribute, $this->attributes)) {
+            $this->id = $this->attributes[$this->idAttribute];
         }
+    }
+
+    /**
+     * Recursively lowers the case of array keys
+     *
+     * @param array $attributes
+     * @return array
+     */
+    public function deAxcelerateAttributes($attributes)
+    {
+        return array_map(function($item) {
+            if (is_array($item)) {
+                $item = $this->deAxcelerateAttributes($item);
+            }
+            return $item;
+        }, array_change_key_case($attributes));
     }
 
     /**
