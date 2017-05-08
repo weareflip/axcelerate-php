@@ -35,6 +35,23 @@ class ContactManager extends Manager implements ManagerContract
         return $response ? new Contact($response[0], $this) : null;
     }
 
+    /**
+     * Find a Contact by Axcelerate ID or return new instance
+     *
+     * @param int $id
+     * @return Contact
+     */
+    public function firstOrNew($id)
+    {
+        $response = $this->getConnection()->get('contact/' . $id, []);
+
+        if (! $response) {
+            return new Contact([], $this);
+        }
+
+        return $response;
+    }
+
     public function search($attributes)
     {
         $response = $this->getConnection()->get('contacts/search', $attributes);

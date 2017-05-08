@@ -10,6 +10,28 @@ class Contact extends Resource
     public $idAttribute = 'contactid';
 
     /**
+     * Save or update Contact's details
+     *
+     * @param $attributes
+     * @return bool
+     */
+    public function save($attributes)
+    {
+        if ($this->id) {
+            return $this->update($attributes);
+        }
+
+        $response = $this->manager->getConnection()->create('contact', $attributes);
+
+        if ($response) {
+            $this->attributes = $response;
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * Update Contact's details
      *
      * @param array $attributes Attributes to update

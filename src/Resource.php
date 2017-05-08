@@ -37,7 +37,7 @@ abstract class Resource
      * @param array $attributes
      * @return array
      */
-    public function deAxcelerateAttributes($attributes)
+    protected function deAxcelerateAttributes($attributes)
     {
         return array_map(function($item) {
             if (is_array($item)) {
