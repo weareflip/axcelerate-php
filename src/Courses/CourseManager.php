@@ -53,4 +53,14 @@ class CourseManager extends Manager implements ManagerContract
 
         return $instances;
     }
+
+    /**
+     * Get all courses in axcelerate.
+     *
+     * @return array
+     */
+    public function get()
+    {
+        return $this->getConnection()->get('courses/', []);
+    }
 }
