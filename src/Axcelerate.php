@@ -9,8 +9,6 @@ use FlipNinja\Axcelerate\Courses\CourseManager;
 
 class Axcelerate
 {
-    const PRODUCTION_BASE = 'https://api.axcelerate.com.au/api/';
-    const STAGING_BASE = 'https://stg.axcelerate.com.au/api/';
 
     /** @var ConnectionContract $connection */
     protected $connection;

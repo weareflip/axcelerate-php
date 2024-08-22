@@ -13,7 +13,7 @@ https://www.axcelerate.com.au/
 use FlipNinja\Axcelerate\Axcelerate;
 use FlipNinja\Axcelerate\Contacts\Enrolment;
 
-$axcelerate = new Axcelerate($apiToken, $wsToken, Axcelerate::STAGING_BASE);
+$axcelerate = new Axcelerate($apiToken, $wsToken, 'https://stg.axcelerate.com.au/api/');
 
 // Find a contact
 $contact = $axcelerate->contacts()->find($user->id);

@@ -63,4 +63,25 @@ class CourseManager extends Manager implements ManagerContract
     {
         return $this->getConnection()->get('courses/', []);
     }
+
+    public function createInstance($attributes)
+    {
+        $response = $this->getConnection()->create('course/instance', $attributes);
+
+        return $response ? intval($response['INSTANCEID']) : null;
+    }
+
+    public function updateInstance($attributes)
+    {
+        $response = $this->getConnection()->update('course/instance', $attributes);
+
+        return $response ? $response['STATUS'] === 'success' : false;
+    }
+
+    public function enrollment($attributes)
+    {
+        $response = $this->getConnection()->create('enrol', $attributes);
+
+        return $response ? intval($response['invoiceID']) : null;
+    }
 }
