@@ -72,6 +72,15 @@ class Contact extends Resource
         return $response ? $response : [];
     }
 
+    public function courseEnrolments()
+    {
+        $response = $this->manager->getConnection()->get('course/enrolments', [
+            'contactID' => $this->id,
+        ]);
+
+        return $response ? $response : [];
+    }
+
     /**
      * Returns the certificate for the enrolment
      *
